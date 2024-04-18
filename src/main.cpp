@@ -20,7 +20,7 @@ int main(int argc, char **argv)
     //
     // Create an unstructured mesh
     //
-    Mesh::Unstructured<Model::Isotropic> mymesh("platehole_lst.vtk");
+    Mesh::Unstructured<Model::Isotropic> mymesh("platehole_q9.vtk");
 
     //
     // Create a displacement vector to store nodal displacements
@@ -46,7 +46,7 @@ int main(int argc, char **argv)
             // x component of displacement
             DDW.row(2*i) *= 0;                      // Zero out this row of the stiffness matrix
             DDW.coeffRef(2*i,2*i) = 1.0;            // and then set the diagonal to one.
-            DW(2*i) = -du;                          // Set the right-hand side to "-du"
+            DW(2*i) = 0.0;                          // Set the right-hand side to "-du"
 
             // y component of displacement ... same thing as z but with disp = 0
             DDW.row(2*i + 1) *= 0;
@@ -61,11 +61,11 @@ int main(int argc, char **argv)
         {
             DDW.row(2*i) *= 0;
             DDW.coeffRef(2*i,2*i) = 1.0;
-            DW(2*i) = du;
+            DW(2*i) = 0.0;
 
             DDW.row(DIM*i + 1) *= 0;
             DDW.coeffRef(DIM*i + 1,DIM*i + 1) = 1.0;
-            DW(DIM*i + 1) = 0.0;
+            DW(DIM*i + 1) = -du;
         }
     }
 
@@ -76,7 +76,7 @@ int main(int argc, char **argv)
     disp = solver.solve(DW);
 
     // Use the print function to output displacements.
-    mymesh.Print("outputfile.vtk", disp);
+    mymesh.Print("q9_lever_outputfile.vtk", disp);
 
 
     // TODO : Run this code as-is for the following mesh files

@@ -70,7 +70,6 @@ Edit the following file
 Update the `W`, `DW`, and `DDW` for Q4, LST, and Q9 elements, following the existing
 implementation for CST elements.
 
-
 ### (1c) Run the tests
 
 If you have implemented the above correctly, you can run the tests by
@@ -91,6 +90,8 @@ Edit the following file
 - `src/Mesh/Unstructured.H`
 
 Update the `Print` function by copying in your previous implementation, and also adding the capability to output nodal displacements.
+
+// Need to do this still
 
 ### (2b) Run the main program
 
